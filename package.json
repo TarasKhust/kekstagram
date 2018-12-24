@@ -1,0 +1,14 @@
+{
+  "name": "Кекстаграм",
+  "version": "0.0.1",
+  "dependencies": {
+    
+  },
+  "quokka": {
+    "jsdom": {
+      "file": "index.html",
+      "html": "...",
+      "userAgent": "..."
+    }
+  }
+}
