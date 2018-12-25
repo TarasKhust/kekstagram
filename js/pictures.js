@@ -11,8 +11,9 @@ let DescripthionDate = {
 };
 
 let template = document.querySelector('#picture').content;
-let picture = template.querySelector('.picture');
+let picture = document.querySelector('.pictures');
 let galleryPicture = document.querySelector('.big-picture');
+let socialTemplate = document.querySelector('#comment-template').content;
 let socialComents = document.querySelector('.social__comments');
 
 // Генерация правельного масива с данными для шаблона
@@ -33,8 +34,8 @@ function renderTemplate() {
   let pictureData = GenerateDescription();
   let fragment = document.createDocumentFragment();
 
-  pictureData.forEach((value, index, array) => {
-    fragment.appendChild(renderPicture(value))
+  pictureData.forEach((value) => {
+    fragment.appendChild(renderPicture(value));
   });
 
   picture.appendChild(fragment);
@@ -85,31 +86,33 @@ function getRandomDescription(array) {
   return randomElement
 }
 
-// Функция создание класса под коментариямы
-function creatingANewBlock(array) {
-  let value;
-  array.forEach((item) => {
-    value = item;
-  });
-  let socialCaption = document.querySelector('.social__caption');
-  let fragment = document.createDocumentFragment();
-  let liClass = document.createElement('li');
-  let imgClass = document.createElement('img');
-  let pClass = document.createElement('p');
-  socialCaption.textContent = value.description;
-  pClass.classList.add('social__text');
-  pClass.textContent = value.comments;
-  liClass.classList.add('social__comment', 'social__comment--text');
-  imgClass.classList.add('social__picture');
-  imgClass.src = `img/avatar-${getRandomInt(1,6)}.svg`;
-  imgClass.width = 35;
-  imgClass.height = 35;
-  fragment.appendChild(liClass);
-  fragment.appendChild(imgClass);
-  fragment.appendChild(pClass);
-  socialComents.appendChild(fragment);
-
-
-
+// шаблон коментария
+function creatingANewBlock(value) {
+  let cloneNode = socialTemplate.cloneNode(true);
+  let description = document.querySelector('.social__caption');
+  description.textContent = value.description;
+  cloneNode.querySelector('.social__picture').src = `img/avatar-${getRandomInt(1,6)}.svg`;
+  cloneNode.querySelector('.social__text').textContent = value.comments;
+  return cloneNode;
 }
-creatingANewBlock(GenerateDescription());
+// Функция создания шаблона коментария
+function renderTemplateComments() {
+  let pictureData = GenerateDescription();
+  let fragment = document.createDocumentFragment();
+
+  for (let i = 1; i <= 2; i++) {
+    let value = pictureData[i];
+    fragment.appendChild(creatingANewBlock(value));
+  }
+
+  socialComents.appendChild(fragment);
+}
+renderTemplateComments();
+
+function hideClass () {
+  let socialComment = document.querySelector('.social__comment-count');
+  let socialLoad = document.querySelector('.social__comments-loader');
+  socialComment.classList.add('visually-hidden');
+  socialLoad.classList.add('visually-hidden');
+}
+hideClass();
