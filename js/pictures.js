@@ -1,6 +1,6 @@
 'use strict';
 
-let DescripthionDate = {
+let data = {
   COUNT: 25,
   ARRAY_COMMENTS: ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда' +
   ' вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'],
@@ -10,21 +10,21 @@ let DescripthionDate = {
   'Вот это тачка!']
 };
 
-let template = document.querySelector('#picture').content;
-let picture = document.querySelector('.pictures');
-let galleryPicture = document.querySelector('.big-picture');
-let socialTemplate = document.querySelector('#comment-template').content;
-let socialComents = document.querySelector('.social__comments');
+let template = document.querySelector('#picture').content,
+  picture = document.querySelector('.pictures'),
+  galleryPicture = document.querySelector('.big-picture'),
+  socialTemplate = document.querySelector('#comment-template').content,
+  socialComments = document.querySelector('.social__comments');
 
 // Генерация правельного масива с данными для шаблона
 function GenerateDescription() {
   let description = [];
-  for (let i = 1; i <= DescripthionDate.COUNT; i++) {
+  for (let i = 1; i <= data.COUNT; i++) {
     description.push({
       url: `photos/${i}.jpg`,
       likes: getRandomInt(15, 255),
-      comments: getRandomElement(DescripthionDate.ARRAY_COMMENTS),
-      description: getRandomDescription(DescripthionDate.DESCRIPTION_DATA)
+      comments: getRandomElement(data.ARRAY_COMMENTS),
+      description: getRandomDescription(data.DESCRIPTION_DATA)
     })
   }
   return description;
@@ -34,17 +34,17 @@ function renderTemplate() {
   let pictureData = GenerateDescription();
   let fragment = document.createDocumentFragment();
 
-  pictureData.forEach((value) => {
-    fragment.appendChild(renderPicture(value));
+  pictureData.forEach((value, index, array) => {
+    fragment.appendChild(renderPicture(value, index, array));
   });
 
   picture.appendChild(fragment);
 }
 renderTemplate();
 // Генерируем шаблон
-function renderPicture(value) {
+function renderPicture(value, index, array) {
   let pictureElement = template.cloneNode(true);
-  pictureElement.querySelector('.picture__comments').textContent = value.comments;
+  pictureElement.querySelector('.picture__comments').textContent = value.comments.length;
   pictureElement.querySelector('.picture__likes').textContent = value.likes;
   pictureElement.querySelector('img').src = value.url;
   return pictureElement;
@@ -55,7 +55,6 @@ function gallery(array) {
   array.forEach((item) => {
     value = item;
   });
-  galleryPicture.classList.remove('hidden');
   galleryPicture.querySelector('.big-picture__img').src = value.url;
   galleryPicture.querySelector('.likes-count').textContent = value.likes;
   galleryPicture.querySelector('.comments-count').textContent = value.comments.length;
@@ -105,7 +104,7 @@ function renderTemplateComments() {
     fragment.appendChild(creatingANewBlock(value));
   }
 
-  socialComents.appendChild(fragment);
+  socialComments.appendChild(fragment);
 }
 renderTemplateComments();
 

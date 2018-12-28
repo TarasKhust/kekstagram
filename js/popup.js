@@ -1,78 +1,47 @@
 'use strict';
-(function() {
-  let openPicture = document.querySelectorAll('.picture'),
-      bigPicture = document.querySelector('.big-picture'),
-      closePicture = document.querySelector('#picture-cancel'),
-      uploadFile = document.querySelector('.img-upload__input'),
-      imgUpload = document.querySelector('.img-upload__overlay'),
-      uploadCancel = document.querySelector('#upload-cancel');
 
-  let onPopupEscPress = (evt) => {
-    if (evt.keyCode === 27) {
-      closePopup();
-    }
-  };
-  openPicture.forEach((value) => {
-    if (value.classList.contains('picture')) {
-      value.addEventListener('click', () => {
-        openPopup();
-      });
-    } else {
-      value.addEventListener('keydown', (evt) => {
-        if (evt.keyCode === 13) {
-          openPopup();
-          evt.stopPropagation();
-        }
-      });
-    }
-  });
+let openPicture = document.querySelectorAll('.picture'),
+    bigPicture = document.querySelector('.big-picture'),
+    closePicture = document.querySelector('#picture-cancel');
 
-  let openPopup = () => {
-    bigPicture.classList.remove('hidden');
-    document.removeEventListener('keydown', onPopupEscPress);
-  };
+function onPopupEscPress(evt) {
+  if (evt.keyCode === 27) {
+    closePopup()
+  }
+}
 
-  let closePopup = () => {
-    bigPicture.classList.add('hidden');
-    imgUpload.classList.add('hidden');
-    document.removeEventListener('keydown', onPopupEscPress);
-  };
+function openPopup() {
+  bigPicture.classList.remove('hidden');
+  document.removeEventListener('keydown', onPopupEscPress)
+}
 
-  let changeEventHandler = () => {
-    imgUpload.classList.remove('hidden');
-  };
+function closePopup() {
+  bigPicture.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress)
+}
 
-  openPicture.forEach((value) => {
-    if (value.classList.contains('picture')) {
-      value.addEventListener('click', () => {
-        openPopup();
-      });
-    } else {
-      value.addEventListener('keydown', (evt) => {
-        if (evt.keyCode === 13) {
-          openPopup();
-          evt.stopPropagation();
-        }
-      });
-    }
-  });
+openPicture.forEach((value) => {
+  if (value.classList.contains('picture')) {
+    value.addEventListener('click', () => {
+      openPopup();
+    });
+  } else  {
+    value.addEventListener('keydown', (evt) => {
+      if (evt.keyCode === 13) {
+        openPopup()
+      }
+    });
+  }
+});
 
-  closePicture.addEventListener('click', () => {
-    closePopup();
-  });
 
-  document.addEventListener('keydown', (evt) => {
-    if (evt.keyCode === 13 || evt.keyCode === 27) {
-      closePopup();
-      evt.stopPropagation();
-    }
-  });
 
-  uploadFile.addEventListener('change', () => {
-    changeEventHandler();
-  });
+closePicture.addEventListener('click', () => {
+  closePopup();
+});
 
-  uploadCancel.addEventListener('click', () => {
-    closePopup();
-  });
-})();
+document.addEventListener('keydown', (evt) => {
+  if (evt.keyCode === 13 || evt.keyCode === 27) {
+    closePopup()
+  }
+});
