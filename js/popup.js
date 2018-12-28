@@ -5,7 +5,14 @@ let openPicture = document.querySelectorAll('.picture'),
     closePicture = document.querySelector('#picture-cancel'),
     uploadFile = document.querySelector('.img-upload__input'),
     imgUpload = document.querySelector('.img-upload__overlay'),
-    uploadCancel = document.querySelector('#upload-cancel');
+    uploadCancel = document.querySelector('#upload-cancel'),
+    scaleElement = document.querySelector('.img-upload__scale'),
+    scaleValueElement = scaleElement.querySelector('.scale__control--value'),
+    scaleSmallerElement = scaleElement.querySelector('.scale__control--smaller'),
+    imgPreviewWrapperElement = document.querySelector('.img-upload__preview'),
+    scaleBiggerElement = scaleElement.querySelector('.scale__control--bigger'),
+    effectLevelElement = document.querySelector('.effect-level'),
+    effectsListElement = document.querySelector('.effects__list');
 
 function onPopupEscPress(evt) {
   if (evt.keyCode === 27) {
@@ -24,10 +31,27 @@ function closePopup() {
   document.removeEventListener('keydown', onPopupEscPress)
 }
 
-function changeEventHandler(event) {
+function changeEventHandler() {
   imgUpload.classList.remove('hidden');
 }
 
+function setPhotoScale(value) {
+  let ScaleValue = {
+    MIN: 25,
+    STEP: 25,
+    MAX: 100,
+    DEFAULT: 100
+  };
+  let currentScale = parseInt(scaleValueElement.value, 10);
+  currentScale += ScaleValue.STEP * value;
+  if (currentScale >= ScaleValue.MIN && currentScale <= ScaleValue.MAX) {
+    scaleValueElement.value = currentScale + '%';
+    currentScale = currentScale / 100;
+    imgPreviewWrapperElement.style.transform = `scale(${currentScale})`;
+  }
+  return currentScale;
+}
+setPhotoScale(-1)
 openPicture.forEach((value) => {
   if (value.classList.contains('picture')) {
     value.addEventListener('click', () => {
@@ -54,8 +78,18 @@ document.addEventListener('keydown', (evt) => {
   }
 });
 
-uploadFile.onchange=changeEventHandler;
+uploadFile.addEventListener('change', () => {
+  changeEventHandler();
+});
 
 uploadCancel.addEventListener('click', () => {
   closePopup()
+});
+
+scaleSmallerElement.addEventListener('click', () => {
+  setPhotoScale(-1)
+});
+
+scaleBiggerElement.addEventListener('click', function () {
+  setPhotoScale(1);
 });
