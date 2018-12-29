@@ -11,37 +11,35 @@ let openPicture = document.querySelectorAll('.picture'),
     scaleSmallerElement = scaleElement.querySelector('.scale__control--smaller'),
     imgPreviewWrapperElement = document.querySelector('.img-upload__preview'),
     scaleBiggerElement = scaleElement.querySelector('.scale__control--bigger'),
-    effectLevelElement = document.querySelector('.effect-level'),
-    effectsListElement = document.querySelector('.effects__list');
+    effectsItem = document.querySelectorAll('.effects__item');
 
-function onPopupEscPress(evt) {
+let onPopupEscPress = (evt) => {
   if (evt.keyCode === 27) {
-    closePopup()
+    closePopup();
   }
-}
+};
 
-function openPopup() {
+let openPopup = () => {
   bigPicture.classList.remove('hidden');
   document.removeEventListener('keydown', onPopupEscPress)
-}
+};
 
-function closePopup() {
+let closePopup = () => {
   bigPicture.classList.add('hidden');
   imgUpload.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress)
-}
+};
 
-function changeEventHandler() {
+let changeEventHandler = () => {
   imgUpload.classList.remove('hidden');
-}
+};
 
-function setPhotoScale(value) {
-  let ScaleValue = {
-    MIN: 25,
-    STEP: 25,
-    MAX: 100,
-    DEFAULT: 100
-  };
+let setPhotoScale = (value) => {
+  let ScaleValue = new Object();
+    ScaleValue.MIN = 25;
+    ScaleValue.STEP = 25;
+    ScaleValue.MAX = 100;
+
   let currentScale = parseInt(scaleValueElement.value, 10);
   currentScale += ScaleValue.STEP * value;
   if (currentScale >= ScaleValue.MIN && currentScale <= ScaleValue.MAX) {
@@ -50,8 +48,15 @@ function setPhotoScale(value) {
     imgPreviewWrapperElement.style.transform = `scale(${currentScale})`;
   }
   return currentScale;
-}
-setPhotoScale(-1)
+};
+
+let addEffectsItem = () => {
+  effectsItem.forEach((item, index, listObj) => {
+
+  });
+};
+addEffectsItem();
+
 openPicture.forEach((value) => {
   if (value.classList.contains('picture')) {
     value.addEventListener('click', () => {
@@ -87,9 +92,9 @@ uploadCancel.addEventListener('click', () => {
 });
 
 scaleSmallerElement.addEventListener('click', () => {
-  setPhotoScale(-1)
+  setPhotoScale(-1);
 });
 
-scaleBiggerElement.addEventListener('click', function () {
+scaleBiggerElement.addEventListener('click', () => {
   setPhotoScale(1);
 });
