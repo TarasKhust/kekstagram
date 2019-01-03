@@ -33,7 +33,7 @@
     for (let i = 1; i <= data.COUNT; i++) {
       description.push({
         url: `photos/${i}.jpg`,
-        likes: getRandomInt(15, 255),
+        likes: getRandomNumber(15, 255),
         comments: getRandomElement(data.ARRAY_COMMENTS),
         description: getRandomDescription(data.DESCRIPTION_DATA),
       });
@@ -80,8 +80,8 @@
   gallery(GenerateDescription());
 
 // Функция, возвращающая случайный лайк
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
 // Функция возвращает случайный коментарий
@@ -112,7 +112,7 @@
     let description = document.querySelector('.social__caption');
     description.textContent = value.description;
     cloneNode.querySelector(
-        '.social__picture').src = `img/avatar-${getRandomInt(1, 6)}.svg`;
+        '.social__picture').src = `img/avatar-${getRandomNumber(1, 6)}.svg`;
     cloneNode.querySelector('.social__text').textContent = value.comments;
     return cloneNode;
   }
