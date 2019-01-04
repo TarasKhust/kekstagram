@@ -52,50 +52,50 @@
     MAX: 100
   };
 
-  let uploadElement = document.querySelector('.img-upload'),
-   imgPreviewWrapperElement = uploadElement.querySelector('.img-upload__preview'),
-   imgPreviewElement = imgPreviewWrapperElement.querySelector('.img-upload__preview img'),
-   effectLevelElement = uploadElement.querySelector('.effect-level'),
-   effectsListElement = uploadElement.querySelector('.effects__list'),
-   effectPinElement = effectLevelElement.querySelector('.effect-level__pin'),
-   effectDepthElement = effectLevelElement.querySelector('.effect-level__depth'),
-   effectLevelValueElement = effectLevelElement.querySelector('.effect-level__value'),
-   currentEffectName = effectsListElement.querySelector('.effects__radio:checked'),
-   defaultElement = effectsListElement.querySelector('#effect-' + DEFAULT_EFFECT),
-   effectLevelLineElement = effectLevelElement.querySelector('.effect-level__line');
+  let uploadElement = document.querySelector('.img-upload');
+  let imgPreviewWrapperElement = uploadElement.querySelector('.img-upload__preview');
+  let imgPreviewElement = imgPreviewWrapperElement.querySelector('.img-upload__preview img');
+  let effectLevelElement = uploadElement.querySelector('.effect-level');
+  let effectsListElement = uploadElement.querySelector('.effects__list');
+  let effectPinElement = effectLevelElement.querySelector('.effect-level__pin');
+  let effectDepthElement = effectLevelElement.querySelector('.effect-level__depth');
+  let effectLevelValueElement = effectLevelElement.querySelector('.effect-level__value');
+  let currentEffectName = effectsListElement.querySelector('.effects__radio:checked');
+  let defaultElement = effectsListElement.querySelector('#effect-' + DEFAULT_EFFECT);
+  let effectLevelLineElement = effectLevelElement.querySelector('.effect-level__line');
 
-  let applyEffect = (value) => {
+  function applyEffect(value) {
     if (currentEffectName === DEFAULT_EFFECT) {
       imgPreviewElement.style.filter = '';
     } else {
-      imgPreviewElement.style.filter = EffectParameter[currentEffectName].PROPERTY + '(' + getFilterValue(currentEffectName, value) + ')';
+      imgPreviewElement.style.filter = `${EffectParameter[currentEffectName].PROPERTY}(${getFilterValue(currentEffectName, value)})`;
     }
     setPinPosition(value);
-  };
+  }
 
-  let setPinPosition = (value) => {
-    effectPinElement.style.left = `${value}%`;
+  function setPinPosition(value) {
+    effectPinElement.style.left = value + '%';
     effectLevelValueElement.value = Math.round(value);
     effectDepthElement.style.width = effectPinElement.style.left;
-  };
+  }
 
-  let setDefaultEffect = () => {
+  function setDefaultEffect() {
     defaultElement.checked = true;
     imgPreviewElement.classList = '';
     imgPreviewElement.style.filter = '';
-    imgPreviewElement.classList.add('effects__preview--' + DEFAULT_EFFECT);
+    imgPreviewElement.classList.add(`'effects__preview--'${DEFAULT_EFFECT}`);
     effectLevelElement.classList.add('hidden');
     setPinPosition(PinValue.DEFAULT);
   }
 
-  let onImageEffectClick = (evt) => {
+  function onImageEffectClick(evt) {
     let target = evt.target;
     if (target.tagName !== 'INPUT') {
       return;
     }
     imgPreviewElement.classList = '';
     currentEffectName = target.value;
-    imgPreviewElement.classList.add('effects__preview--' + currentEffectName);
+    imgPreviewElement.classList.add(`'effects__preview--'${currentEffectName}`);
     imgPreviewElement.style.filter = '';
 
     if (currentEffectName === DEFAULT_EFFECT) {
@@ -106,13 +106,13 @@
     effectLevelValueElement.value = EffectValue.DEFAULT;
     applyEffect(EffectValue.DEFAULT);
     setPinPosition();
-  };
+  }
 
-  let getFilterValue = (effect, value) => {
+  function getFilterValue(effect, value) {
     return value * (EffectParameter[effect].MAX_VALUE - EffectParameter[effect].MIN_VALUE) / EffectValue.MAX + EffectParameter[effect].MIN_VALUE + EffectParameter[effect].UNIT;
-  };
+  }
 
-  let onMouseDown = (evt) => {
+  function onMouseDown(evt) {
     let startCoordX = evt.clientX;
     let sliderEffectLineRect = effectLevelLineElement.getBoundingClientRect();
     let clickedPosition = (startCoordX - sliderEffectLineRect.left) / sliderEffectLineRect.width * 100;
@@ -120,7 +120,7 @@
     setPinPosition(clickedPosition);
     applyEffect(clickedPosition);
 
-    let onMouseMove = (moveEvt) => {
+    let onMouseMove = function (moveEvt) {
       let shiftX = startCoordX - moveEvt.clientX;
       startCoordX = moveEvt.clientX;
       let movePosition = (effectPinElement.offsetLeft - shiftX) / sliderEffectLineRect.width * 100;
@@ -135,7 +135,7 @@
       applyEffect(movePosition);
     };
 
-    let onMouseUp = (upEvt) => {
+    let onMouseUp = function (upEvt) {
       upEvt.preventDefault();
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mousemove', onMouseUp);
@@ -143,7 +143,7 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  };
+  }
 
   effectsListElement.addEventListener('click', onImageEffectClick);
   effectLevelLineElement.addEventListener('mousedown', onMouseDown);

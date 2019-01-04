@@ -30,7 +30,7 @@
       <section class="img-upload">
         <div class="img-upload__wrapper">
           <h2 class="img-upload__title  visually-hidden">Загрузка фотографии</h2>
-          <form class="img-upload__form" id="upload-select-image" action="https://js.dump.academy/kekstagram" method="post" enctype="multipart/form-data" autocomplete="off">
+          <form class="img-upload__form" action="https://js.dump.academy/kekstagram" id="upload-select-image" method="post" enctype="multipart/form-data" autocomplete="off">
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
@@ -46,8 +46,7 @@
                   <!-- Изменение размера изображения -->
                   <fieldset class="img-upload__scale  scale">
                     <button type="button" class="scale__control  scale__control--smaller">Уменьшить</button>
-                    <input type="text" class="scale__control  scale__control--value" value="100%" title="Image Scale"
-                           name="scale" readonly>
+                    <input type="text" class="scale__control  scale__control--value" value="100%" title="Image Scale" name="scale" readonly>
                     <button type="button" class="scale__control  scale__control--bigger">Увеличить</button>
                   </fieldset>
 
@@ -108,7 +107,7 @@
                       </label>
                     </li>
                     <li class="effects__item">
-                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-heat" value="heat" checked>
+                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-heat" value="heat">
                       <label for="effect-heat" class="effects__label">
                         <span class="effects__preview  effects__preview--heat">Превью эффекта Зной</span>
                         Зной
@@ -119,8 +118,8 @@
 
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
-                  <input class="text__hashtags" type="text" name="hashtags" placeholder="#хэш-тег" maxlength="104">
-                  <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"></textarea>
+                  <input class="text__hashtags" name="hashtags" placeholder="#хэш-тег">
+                  <textarea class="text__description" name="description" maxlength="140" placeholder="Ваш комментарий..."></textarea>
                 </fieldset>
 
                 <!-- Кнопка для отправки данных на сервер -->
@@ -157,6 +156,7 @@
           <div class="social__comment-count">5 из <span class="comments-count">125</span> комментариев</div>
           <ul class="social__comments">
           </ul>
+
           <!-- Кнопка для загрузки новой порции комментариев -->
           <button type="button" class="social__comments-loader  comments-loader">Загрузить еще</button>
 
@@ -185,11 +185,11 @@
     </a>
   </template>
 
-  <!-- Шаблон комментария к фотографии -->
-  <template id="comment-template">
-    <li class="social__comment social__comment--text">
+  <!-- Шаблон комментариев изображения случайного пользователя -->
+  <template id="comment">
+    <li class="social__comment">
       <img class="social__picture" src="" alt="Аватар комментатора фотографии" width="35" height="35">
-       <p class="social__text"></p>
+      <p class="social__text"></p>
     </li>
   </template>
 
@@ -221,11 +221,16 @@
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
 
-
-  <script src="js/pictures.js"></script>
-  <script src="js/popup.js"></script>
-  <script src="js/photo-effect.js"></script>
+<!-- <script src="js/pictures.js"></script> -->
+  <script src="js/util.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/validation.js"></script>
   <script src="js/scale.js"></script>
-  <!--<script src="js/test.js"></script>-->
+  <script src="js/photo-effect.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/picture.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/gallery.js"></script>
+
 </body>
 </html>

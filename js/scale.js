@@ -16,7 +16,7 @@
   let scaleBiggerElement = scaleElement.querySelector('.scale__control--bigger');
   let imgPreviewWrapperElement = uploadElement.querySelector('.img-upload__preview');
 
-  let setPhotoScale = (value) => {
+  function setPhotoScale(value) {
     let currentScale = parseInt(scaleValueElement.value, 10);
     currentScale += ScaleValue.STEP * value;
     if (currentScale >= ScaleValue.MIN && currentScale <= ScaleValue.MAX) {
@@ -25,7 +25,7 @@
       imgPreviewWrapperElement.style.transform = `scale(${currentScale})`;
     }
     return currentScale;
-  };
+  }
 
   scaleSmallerElement.addEventListener('click', function () {
     setPhotoScale(-1);
@@ -34,4 +34,5 @@
   scaleBiggerElement.addEventListener('click', function () {
     setPhotoScale(1);
   });
+
 })();
