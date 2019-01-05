@@ -23,9 +23,9 @@
     window.util.isEscEvent(evt, closePhoto);
   };
 
-  window.picture.appendPhotos();
+  // window.gallery.appendPhotos();
 
-  window.gallery = {
+  window.picture = {
     openPhoto: openPhoto,
     closePhoto: closePhoto
   };
