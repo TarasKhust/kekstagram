@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
 
   let DEFAULT_EFFECT = 'none';
 
@@ -64,31 +64,31 @@
   let defaultElement = effectsListElement.querySelector('#effect-' + DEFAULT_EFFECT);
   let effectLevelLineElement = effectLevelElement.querySelector('.effect-level__line');
 
-  function applyEffect(value) {
+  let applyEffect = (value) => {
     if (currentEffectName === DEFAULT_EFFECT) {
       imgPreviewElement.style.filter = '';
     } else {
       imgPreviewElement.style.filter = `${EffectParameter[currentEffectName].PROPERTY}(${getFilterValue(currentEffectName, value)})`;
     }
     setPinPosition(value);
-  }
+  };
 
-  function setPinPosition(value) {
+  let setPinPosition = (value) => {
     effectPinElement.style.left = value + '%';
     effectLevelValueElement.value = Math.round(value);
     effectDepthElement.style.width = effectPinElement.style.left;
-  }
+  };
 
-  function setDefaultEffect() {
+  let setDefaultEffect = () => {
     defaultElement.checked = true;
     imgPreviewElement.classList = '';
     imgPreviewElement.style.filter = '';
     imgPreviewElement.classList.add(`'effects__preview--'${DEFAULT_EFFECT}`);
     effectLevelElement.classList.add('hidden');
     setPinPosition(PinValue.DEFAULT);
-  }
+  };
 
-  function onImageEffectClick(evt) {
+  let onImageEffectClick = (evt) => {
     let target = evt.target;
     if (target.tagName !== 'INPUT') {
       return;
@@ -106,13 +106,13 @@
     effectLevelValueElement.value = EffectValue.DEFAULT;
     applyEffect(EffectValue.DEFAULT);
     setPinPosition();
-  }
+  };
 
-  function getFilterValue(effect, value) {
+  let getFilterValue = (effect, value) => {
     return value * (EffectParameter[effect].MAX_VALUE - EffectParameter[effect].MIN_VALUE) / EffectValue.MAX + EffectParameter[effect].MIN_VALUE + EffectParameter[effect].UNIT;
-  }
+  };
 
-  function onMouseDown(evt) {
+  let onMouseDown = (evt) => {
     let startCoordX = evt.clientX;
     let sliderEffectLineRect = effectLevelLineElement.getBoundingClientRect();
     let clickedPosition = (startCoordX - sliderEffectLineRect.left) / sliderEffectLineRect.width * 100;
@@ -120,7 +120,7 @@
     setPinPosition(clickedPosition);
     applyEffect(clickedPosition);
 
-    let onMouseMove = function (moveEvt) {
+    let onMouseMove = (moveEvt) => {
       let shiftX = startCoordX - moveEvt.clientX;
       startCoordX = moveEvt.clientX;
       let movePosition = (effectPinElement.offsetLeft - shiftX) / sliderEffectLineRect.width * 100;
@@ -135,7 +135,7 @@
       applyEffect(movePosition);
     };
 
-    let onMouseUp = function (upEvt) {
+    let onMouseUp = (upEvt) => {
       upEvt.preventDefault();
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mousemove', onMouseUp);
@@ -143,7 +143,7 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  }
+  };
 
   effectsListElement.addEventListener('click', onImageEffectClick);
   effectLevelLineElement.addEventListener('mousedown', onMouseDown);

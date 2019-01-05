@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
 
   let ScaleValue = {
     MIN: 25,
@@ -16,7 +16,7 @@
   let scaleBiggerElement = scaleElement.querySelector('.scale__control--bigger');
   let imgPreviewWrapperElement = uploadElement.querySelector('.img-upload__preview');
 
-  function setPhotoScale(value) {
+  let setPhotoScale = (value) => {
     let currentScale = parseInt(scaleValueElement.value, 10);
     currentScale += ScaleValue.STEP * value;
     if (currentScale >= ScaleValue.MIN && currentScale <= ScaleValue.MAX) {
@@ -25,13 +25,13 @@
       imgPreviewWrapperElement.style.transform = `scale(${currentScale})`;
     }
     return currentScale;
-  }
+  };
 
-  scaleSmallerElement.addEventListener('click', function () {
+  scaleSmallerElement.addEventListener('click', () => {
     setPhotoScale(-1);
   });
 
-  scaleBiggerElement.addEventListener('click', function () {
+  scaleBiggerElement.addEventListener('click', () => {
     setPhotoScale(1);
   });
 
