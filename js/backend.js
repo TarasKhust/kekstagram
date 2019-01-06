@@ -7,6 +7,8 @@
     POST: 'https://js.dump.academy/kekstagram/'
   };
 
+  let imgFilters = document.querySelector('.img-filters');
+
   let TIMEOUT = 10000;
 
   let Code = {

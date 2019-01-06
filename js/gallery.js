@@ -4,8 +4,9 @@
 
   let photos = [];
 
-  let pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-  let picturesBlock = document.querySelector('.pictures');
+  let pictureTemplate = document.querySelector('#picture').content.querySelector('.picture'),
+      picturesBlock = document.querySelector('.pictures'),
+      imgFilters = document.querySelector('.img-filters');
 
   let renderPhoto = (value) => {
     let photoElement = pictureTemplate.cloneNode(true);
@@ -32,10 +33,18 @@
     picturesBlock.appendChild(fragment);
   };
 
-  // window.gallery = {
-  //   appendPhotos: appendPhotos
-  // };
+  window.gallery = {
+    appendPhotos: appendPhotos,
+    initialData: []
+  };
 
-  window.backend.load(appendPhotos);
+  let loadGalleryPhoto = (callback) => {
+    window.backend.load(appendPhotos);
+    callback();
+  };
+
+  loadGalleryPhoto(() => {
+    imgFilters.classList.remove('img-filters--inactive');
+  });
 
 })();
