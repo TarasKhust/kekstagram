@@ -34,8 +34,7 @@
   };
 
   window.gallery = {
-    appendPhotos: appendPhotos,
-    initialData: []
+    appendPhotos: appendPhotos
   };
 
   let loadGalleryPhoto = (callback) => {
