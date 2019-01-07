@@ -33,9 +33,9 @@
     picturesBlock.appendChild(fragment);
   };
 
-  window.gallery = {
-    appendPhotos: appendPhotos
-  };
+  // window.gallery = {
+  //   appendPhotos: appendPhotos
+  // };
 
   let loadGalleryPhoto = (callback) => {
     window.backend.load(appendPhotos);

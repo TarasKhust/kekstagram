@@ -1,31 +1,24 @@
 'use strict';
 
-(function () {
+(() => {
 
   let mainElement = document.querySelector('main');
   let successModalTemplate = document.querySelector('#success').content.querySelector('.success');
 
-  let closeModal = () => {
-    let modalElement = mainElement.querySelector('.modal');
-    mainElement.removeChild(modalElement);
-    document.removeEventListener('keydown', onModalEscPress);
-    modalElement.removeEventListener('click', onDocumentClick);
-  };
-
   let onDocumentClick = (evt) => {
     if (evt.target.tagName === 'SECTION') {
-      closeModal();
+      window.error.closeModal();
     }
   };
 
   let onModalEscPress = (evt) => {
-    window.util.isEscEvent(evt, closeModal);
+    window.util.isEscEvent(evt, window.error.closeModal(successModalTemplate));
   };
   let showModalSucces = () => {
     document.addEventListener('keydown', onModalEscPress);
     mainElement.appendChild(successModalTemplate);
     successModalTemplate.querySelector('.success__button').addEventListener('click', () => {
-      closeModal();
+      window.error.closeModal(successModalTemplate);
     });
     successModalTemplate.addEventListener('click', onDocumentClick);
   };

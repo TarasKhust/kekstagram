@@ -11,11 +11,10 @@
     }
   };
 
-  let closeModal = () => {
-    let modalElement = mainElement.querySelector('.modal');
-    mainElement.removeChild(modalElement);
+  let closeModal = (remove) => {
+    mainElement.removeChild(remove);
     document.removeEventListener('keydown', onModalEscPress);
-    modalElement.removeEventListener('click', onDocumentClick);
+    document.removeEventListener('click', onDocumentClick);
   };
 
   let onModalEscPress = (evt) => {
@@ -33,7 +32,8 @@
   };
 
   window.error = {
-    show: showModalError
+    show: showModalError,
+    closeModal: closeModal
   };
 
 })();
