@@ -1,0 +1,16 @@
+import './src/css/normalize.css';
+import './src/css/style.css';
+import './src/js/util.js';
+import './src/js/backend.js';
+import './src/js/data.js';
+import './src/js/gallery.js';
+import './src/js/filters.js';
+import './src/js/preview.js';
+import './src/js/form.js';
+import './src/js/avatar.js';
+import './src/js/validation.js';
+import './src/js/scale.js';
+import './src/js/photo-effect.js';
+import './src/js/picture.js';
+import './src/js/error.js';
+import './src/js/succes.js';
