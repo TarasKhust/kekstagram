@@ -1,4 +1,4 @@
-`use strict`;
+'use strict';
 
 (() => {
 
@@ -43,7 +43,7 @@
     window.gallery.initialData = data;
     window.filters.currentData = data;
     window.filters.filtersElement.classList.remove(`img-filters--inactive`);
-    appendPhotos(data);
+    appendPhotos();
   };
 
   let loadGalleryPhoto = (callback) => {

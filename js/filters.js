@@ -1,4 +1,4 @@
-`use strict`;
+'use strict';
 
 (function () {
   let NEW_PICTURES_AMOUNT = 10;
