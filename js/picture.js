@@ -1,22 +1,22 @@
-'use strict';
+`use strict`;
 
 (() => {
 
-  let bigPicture = document.querySelector('.big-picture');
-  let bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
+  let bigPicture = document.querySelector(`.big-picture`);
+  let bigPictureCancel = bigPicture.querySelector(`.big-picture__cancel`);
 
-  bigPictureCancel.addEventListener('click', () => {
+  bigPictureCancel.addEventListener(`click`, () => {
     closePhoto();
   });
 
   let closePhoto = () => {
-    bigPicture.classList.add('hidden');
+    bigPicture.classList.add(`hidden`);
   };
 
   let openPhoto = () => {
-    bigPicture.classList.remove('hidden');
-    bigPicture.querySelector('.social__comments').innerHTML = '';
-    document.addEventListener('keydown', onPhotoEscPress);
+    bigPicture.classList.remove(`hidden`);
+    bigPicture.querySelector(`.social__comments`).innerHTML = ``;
+    document.addEventListener(`keydown`, onPhotoEscPress);
   };
 
   let onPhotoEscPress = (evt) => {
@@ -26,7 +26,6 @@
   // window.gallery.appendPhotos();
 
   window.picture = {
-    openPhoto: openPhoto,
-    closePhoto: closePhoto
+    openPhoto: openPhoto
   };
 })();

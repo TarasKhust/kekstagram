@@ -1,4 +1,4 @@
-'use strict';
+`use strict`;
 
 (() => {
 
@@ -9,12 +9,12 @@
     DEFAULT: 100
   };
 
-  let uploadElement = document.querySelector('.img-upload');
-  let scaleElement = uploadElement.querySelector('.img-upload__scale');
-  let scaleValueElement = scaleElement.querySelector('.scale__control--value');
-  let scaleSmallerElement = scaleElement.querySelector('.scale__control--smaller');
-  let scaleBiggerElement = scaleElement.querySelector('.scale__control--bigger');
-  let imgPreviewWrapperElement = uploadElement.querySelector('.img-upload__preview');
+  let uploadElement = document.querySelector(`.img-upload`),
+      scaleElement = uploadElement.querySelector(`.img-upload__scale`),
+      scaleValueElement = scaleElement.querySelector(`.scale__control--value`),
+      scaleSmallerElement = scaleElement.querySelector(`.scale__control--smaller`),
+      scaleBiggerElement = scaleElement.querySelector(`.scale__control--bigger`),
+      imgPreviewWrapperElement = uploadElement.querySelector(`.img-upload__preview`);
 
   let setPhotoScale = (value) => {
     let currentScale = parseInt(scaleValueElement.value, 10);
@@ -27,12 +27,8 @@
     return currentScale;
   };
 
-  scaleSmallerElement.addEventListener('click', () => {
-    setPhotoScale(-1);
-  });
+  scaleSmallerElement.addEventListener(`click`, setPhotoScale(-1));
 
-  scaleBiggerElement.addEventListener('click', () => {
-    setPhotoScale(1);
-  });
+  scaleBiggerElement.addEventListener(`click`, setPhotoScale(1));
 
 })();

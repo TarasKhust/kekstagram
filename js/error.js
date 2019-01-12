@@ -1,20 +1,20 @@
-'use strict';
+`use strict`;
 
 (() => {
 
-  let mainElement = document.querySelector('main');
-  let errorModalTemplate = document.querySelector('#error').content.querySelector('.error');
+  let mainElement = document.querySelector(`main`),
+      errorModalTemplate = document.querySelector(`#error`).content.querySelector(`.error`);
 
   let onDocumentClick = (evt) => {
-    if (evt.target.tagName === 'SECTION') {
+    if (evt.target.tagName === `SECTION`) {
       closeModal();
     }
   };
 
   let closeModal = (remove) => {
     mainElement.removeChild(remove);
-    document.removeEventListener('keydown', onModalEscPress);
-    document.removeEventListener('click', onDocumentClick);
+    document.removeEventListener(`keydown`, onModalEscPress);
+    document.removeEventListener(`click`, onDocumentClick);
   };
 
   let onModalEscPress = (evt) => {
@@ -23,12 +23,12 @@
 
   let showModalError = (text) => {
     mainElement.appendChild(errorModalTemplate);
-    errorModalTemplate.querySelector('.error__title').textContent = text;
-    errorModalTemplate.querySelector('.error__button').addEventListener('click', () => {
+    errorModalTemplate.querySelector(`.error__title`).textContent = text;
+    errorModalTemplate.querySelector(`.error__button`).addEventListener(`click`, () => {
       closeModal();
     });
-    errorModalTemplate.addEventListener('click', onDocumentClick);
-    document.addEventListener('keydown', onModalEscPress);
+    errorModalTemplate.addEventListener(`click`, onDocumentClick);
+    document.addEventListener(`keydown`, onModalEscPress);
   };
 
   window.error = {

@@ -3,11 +3,9 @@
 (() => {
 
   let Url = {
-    GET: 'https://js.dump.academy/kekstagram/data',
-    POST: 'https://js.dump.academy/kekstagram/'
+    GET: `https://js.dump.academy/kekstagram/data`,
+    POST: `https://js.dump.academy/kekstagram/`
   };
-
-  let imgFilters = document.querySelector('.img-filters');
 
   let TIMEOUT = 10000;
 
@@ -19,9 +17,9 @@
 
   let createRequest = (onSuccess, onError) => {
     let xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
+    xhr.responseType = `json`;
     xhr.timeout = TIMEOUT;
-    xhr.addEventListener('load', () => {
+    xhr.addEventListener(`load`, () => {
       switch (xhr.status) {
         case Code.OK:
           onSuccess(xhr.response);
@@ -37,10 +35,10 @@
           break;
       }
     });
-    xhr.addEventListener('error', () => {
-      onError('Произошла ошибка соединения');
+    xhr.addEventListener(`error`, () => {
+      onError(`Произошла ошибка соединения`);
     });
-    xhr.addEventListener('timeout', () => {
+    xhr.addEventListener(`timeout`, () => {
       onError(`Запрос не успел выполниться за ${xhr.timeout}мс`);
     });
     return xhr;
@@ -48,13 +46,13 @@
 
   let load = (onLoad, onError) => {
     let xhr = createRequest(onLoad, onError);
-    xhr.open('GET', Url.GET);
+    xhr.open(`GET`, Url.GET);
     xhr.send();
   };
 
   let upload = (data, onLoad, onError) => {
     let xhr = createRequest(onLoad, onError);
-    xhr.open('POST', Url.POST);
+    xhr.open(`POST`, Url.POST);
     xhr.send(data);
   };
 

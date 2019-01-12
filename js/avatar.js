@@ -1,10 +1,9 @@
 'use strict';
 (() => {
-  let FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+  let FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
 
-  let uploadAvatar = document.querySelector('.img-upload__start' +
-      ' input[type=file]');
-  let preview = document.querySelector('.img-upload__preview img');
+  let uploadAvatar = document.querySelector(`.img-upload__start input[type=file]`),
+      preview = document.querySelector(`.img-upload__preview img`);
 
   let avatarUpload = () => {
     let file = uploadAvatar.files[0];
@@ -15,7 +14,7 @@
     });
     if (matches){
       let reader = new FileReader();
-      reader.addEventListener('load', () => {
+      reader.addEventListener(`load`, () => {
         preview.src = reader.result;
       });
 
@@ -23,6 +22,6 @@
     }
   };
 
-  uploadAvatar.addEventListener('change', avatarUpload);
+  uploadAvatar.addEventListener(`change`, avatarUpload);
 
 })();
