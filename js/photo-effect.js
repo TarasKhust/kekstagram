@@ -61,7 +61,6 @@
       effectDepthElement = effectLevelElement.querySelector(`.effect-level__depth`),
       effectLevelValueElement = effectLevelElement.querySelector(`.effect-level__value`),
       currentEffectName = effectsListElement.querySelector(`.effects__radio:checked`),
-      defaultElement = effectsListElement.querySelector(`#effect-${DEFAULT_EFFECT}`),
       effectLevelLineElement = effectLevelElement.querySelector(`.effect-level__line`);
 
   let applyEffect = (value) => {
@@ -77,15 +76,6 @@
     effectPinElement.style.left = `${value}%`;
     effectLevelValueElement.value = Math.round(value);
     effectDepthElement.style.width = effectPinElement.style.left;
-  };
-
-  let setDefaultEffect = () => {
-    defaultElement.checked = true;
-    imgPreviewElement.classList = ``;
-    imgPreviewElement.style.filter = ``;
-    imgPreviewElement.classList.add(`effects__preview--${DEFAULT_EFFECT}`);
-    effectLevelElement.classList.add(`hidden`);
-    setPinPosition(PinValue.DEFAULT);
   };
 
   let onImageEffectClick = (evt) => {
