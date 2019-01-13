@@ -2,24 +2,24 @@
 
 (() => {
 
-  let bigPicture = document.querySelector(`.big-picture`);
-  let bigPictureCancel = bigPicture.querySelector(`.big-picture__cancel`);
+  const bigPicture = document.querySelector(`.big-picture`);
+  const bigPictureCancel = bigPicture.querySelector(`.big-picture__cancel`);
 
   bigPictureCancel.addEventListener(`click`, () => {
     closePhoto();
   });
 
-  let closePhoto = () => {
+  const closePhoto = () => {
     bigPicture.classList.add(`hidden`);
   };
 
-  let openPhoto = () => {
+  const openPhoto = () => {
     bigPicture.classList.remove(`hidden`);
     bigPicture.querySelector(`.social__comments`).innerHTML = ``;
     document.addEventListener(`keydown`, onPhotoEscPress);
   };
 
-  let onPhotoEscPress = (evt) => {
+  const onPhotoEscPress = (evt) => {
     window.util.isEscEvent(evt, closePhoto);
   };
 

@@ -4,12 +4,14 @@
 
   let photos = [];
 
-  let pictureTemplate = document.querySelector(`#picture`).content.querySelector(`.picture`),
+  const pictureTemplate = document.querySelector(`#picture`).
+          content.
+          querySelector(`.picture`),
       picturesBlock = document.querySelector(`.pictures`),
       imgFilters = document.querySelector(`.img-filters`);
 
-  let renderPhoto = (value) => {
-    let photoElement = pictureTemplate.cloneNode(true);
+  const renderPhoto = (value) => {
+    const photoElement = pictureTemplate.cloneNode(true);
 
     photoElement.querySelector(`.picture__img`).src = value.url;
     photoElement.querySelector(`.picture__likes`).textContent = value.likes;
@@ -22,8 +24,8 @@
     return photoElement;
   };
 
-  let appendPhotos = () => {
-    let fragment = document.createDocumentFragment();
+  const appendPhotos = () => {
+    const fragment = document.createDocumentFragment();
 
     photos = window.data.generatePhotos();
     photos.forEach((value) => {
@@ -39,14 +41,14 @@
     renderPhoto: renderPhoto
   };
 
-  let successLoadHandler = function (data) {
+  const successLoadHandler = function(data) {
     window.gallery.initialData = data;
     window.filters.currentData = data;
     window.filters.filtersElement.classList.remove(`img-filters--inactive`);
     appendPhotos();
   };
 
-  let loadGalleryPhoto = (callback) => {
+  const loadGalleryPhoto = (callback) => {
     window.backend.load(successLoadHandler);
     callback();
   };

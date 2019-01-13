@@ -1,6 +1,6 @@
 (() => {
 
-  let formElement = document.querySelector(`.img-upload__form`),
+  const formElement = document.querySelector(`.img-upload__form`),
      uploadElement = document.querySelector(`.img-upload`),
      uploadFileElement = uploadElement.querySelector(`#upload-file`),
      uploadSendButtonElement = uploadElement.querySelector(`.img-upload__submit`),
@@ -10,19 +10,19 @@
      descriptionElement = document.querySelector(`.text__description`),
      uploadFormSelectElement = document.querySelector(`#upload-select-image`);
 
-  let openForm = () => {
+  const openForm = () => {
     uploadPopupElement.classList.remove(`hidden`);
     uploadSendButtonElement.disabled = false;
     document.addEventListener(`keydown`, onFormEscPress);
   };
 
-  let closeForm = () => {
+  const closeForm = () => {
     uploadPopupElement.classList.add(`hidden`);
     uploadFileElement.value = null;
     document.removeEventListener(`keydown`, onFormEscPress);
   };
 
-  let onFormEscPress = (evt) => {
+  const onFormEscPress = (evt) => {
     window.util.isEscEvent(evt, closeForm);
   };
 
@@ -50,12 +50,12 @@
     document.addEventListener(`keydown`, onFormEscPress);
   });
 
-  let onError = (errorMessage) => {
+  const onError = (errorMessage) => {
     closeForm();
     window.error.show(errorMessage);
   };
 
-  let onSuccess = () => {
+  const onSuccess = () => {
     closeForm();
     window.success.show();
   };

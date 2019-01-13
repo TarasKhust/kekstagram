@@ -1,19 +1,20 @@
 'use strict';
 (() => {
-  let FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
+  const FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
 
-  let uploadAvatar = document.querySelector(`.img-upload__start input[type=file]`),
+  const uploadAvatar = document.querySelector(
+      `.img-upload__start input[type=file]`),
       preview = document.querySelector(`.img-upload__preview img`);
 
-  let avatarUpload = () => {
-    let file = uploadAvatar.files[0];
-    let fileName = file.name.toLowerCase();
+  const avatarUpload = () => {
+    const file = uploadAvatar.files[0];
+    const fileName = file.name.toLowerCase();
 
-    let matches = FILE_TYPES.some((it) => {
+    const matches = FILE_TYPES.some((it) => {
       return fileName.endsWith(it);
     });
     if (matches){
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.addEventListener(`load`, () => {
         preview.src = reader.result;
       });

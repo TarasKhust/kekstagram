@@ -2,19 +2,19 @@
 
 (() => {
 
-  let Hashtag = {
+  const Hashtag = {
     QUANITY: 5,
     HASH_SYMBOL: `#`,
     MAX_LENGTH: 20
   };
 
-  let uploadElement = document.querySelector(`.img-upload`),
+  const uploadElement = document.querySelector(`.img-upload`),
       hashtagElement = document.querySelector(`.text__hashtags`),
       uploadSubmitElement = uploadElement.querySelector(`.img-upload__submit`);
 
-  let checkRepeatHashtags = (hashtags) => {
+  const checkRepeatHashtags = (hashtags) => {
     for (let i = 0; i < hashtags.length; i++) {
-      let currentHashtag = hashtags[i];
+      const currentHashtag = hashtags[i];
       for (let j = 0; j < hashtags.length; j++) {
         if (currentHashtag === hashtags[j] && i !== j) {
           return true;
@@ -24,16 +24,16 @@
     return false;
   };
 
-  let hashtagValidity = () => {
+  const hashtagValidity = () => {
     hashtagElement.style.outline = ``;
     let errorMessage = ``;
-    let hashtagValue = hashtagElement.value.trim();
+    const hashtagValue = hashtagElement.value.trim();
 
     if (hashtagValue === ``) {
       hashtagElement.setCustomValidity(errorMessage);
       return;
     }
-    let hashtags = hashtagValue.toLowerCase().split(` `);
+    const hashtags = hashtagValue.toLowerCase().split(` `);
     hashtags.forEach((hashtagItem) => {
       if (hashtagItem.charAt(0) !== Hashtag.HASH_SYMBOL) {
         errorMessage = `Хэштег должен начинаться с символа #`;
@@ -55,7 +55,7 @@
 
   hashtagElement.addEventListener(`input`, hashtagValidity);
 
-  let highlightInvalidField = (field) => {
+  const highlightInvalidField = (field) => {
     if (!field.validity.valid) {
       field.style.outline = `2px solid red`;
     } else {

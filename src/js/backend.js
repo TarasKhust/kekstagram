@@ -1,21 +1,21 @@
 'use strict';
 (() => {
 
-  let Url = {
+  const Url = {
     GET: `https://js.dump.academy/kekstagram/data`,
     POST: `https://js.dump.academy/kekstagram/`
   };
 
-  let TIMEOUT = 10000;
+  const TIMEOUT = 10000;
 
-  let Code = {
+  const Code = {
     OK: 200,
     NOT_FOUND: 404,
     INTERNAL_SERVER_ERROR: 500
   };
 
-  let createRequest = (onSuccess, onError) => {
-    let xhr = new XMLHttpRequest();
+  const createRequest = (onSuccess, onError) => {
+    const xhr = new XMLHttpRequest();
     xhr.responseType = `json`;
     xhr.timeout = TIMEOUT;
     xhr.addEventListener(`load`, () => {
@@ -43,14 +43,14 @@
     return xhr;
   };
 
-  let load = (onLoad, onError) => {
-    let xhr = createRequest(onLoad, onError);
+  const load = (onLoad, onError) => {
+    const xhr = createRequest(onLoad, onError);
     xhr.open(`GET`, Url.GET);
     xhr.send();
   };
 
-  let upload = (data, onLoad, onError) => {
-    let xhr = createRequest(onLoad, onError);
+  const upload = (data, onLoad, onError) => {
+    const xhr = createRequest(onLoad, onError);
     xhr.open(`POST`, Url.POST);
     xhr.send(data);
   };

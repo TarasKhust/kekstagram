@@ -2,14 +2,14 @@
 
 (() => {
 
-  let ScaleValue = {
+  const ScaleValue = {
     MIN: 25,
     STEP: 25,
     MAX: 100,
     DEFAULT: 100,
   };
 
-  let uploadElement = document.querySelector(`.img-upload`),
+  const uploadElement = document.querySelector(`.img-upload`),
       scaleElement = uploadElement.querySelector(`.img-upload__scale`),
       scaleValueElement = scaleElement.querySelector(`.scale__control--value`),
       scaleSmallerElement = scaleElement.querySelector(
@@ -19,7 +19,7 @@
       imgPreviewWrapperElement = uploadElement.querySelector(
           `.img-upload__preview`);
 
-  let setPhotoScale = (value) => {
+  const setPhotoScale = (value) => {
     let currentScale = parseInt(scaleValueElement.value, 10);
     currentScale += ScaleValue.STEP * value;
     if (currentScale >= ScaleValue.MIN && currentScale <= ScaleValue.MAX) {
