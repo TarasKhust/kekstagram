@@ -9,10 +9,8 @@
   const avatarUpload = () => {
     const file = uploadAvatar.files[0];
     const fileName = file.name.toLowerCase();
+    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
-    const matches = FILE_TYPES.some((it) => {
-      return fileName.endsWith(it);
-    });
     if (matches){
       const reader = new FileReader();
       reader.addEventListener(`load`, () => {

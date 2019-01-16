@@ -22,33 +22,23 @@
     document.removeEventListener(`keydown`, onFormEscPress);
   };
 
-  const onFormEscPress = (evt) => {
-    window.util.isEscEvent(evt, closeForm);
-  };
+  const onFormEscPress = (evt) => window.util.isEscEvent(evt, closeForm);
 
-  uploadFormSelectElement.addEventListener(`change`, () => {
-    openForm();
-  });
+  uploadFormSelectElement.addEventListener(`change`, () => openForm());
 
-  uploadPopupCloseElement.addEventListener(`click`, () => {
-    closeForm();
-  });
+  uploadPopupCloseElement.addEventListener(`click`, () => closeForm());
 
-  hashtagElement.addEventListener(`focusin`, () => {
-    document.removeEventListener(`keydown`, onFormEscPress);
-  });
+  hashtagElement.addEventListener(`focusin`, () =>
+      document.removeEventListener(`keydown`, onFormEscPress));
 
-  hashtagElement.addEventListener(`focusout`, () => {
-    document.addEventListener(`keydown`, onFormEscPress);
-  });
+  hashtagElement.addEventListener(`focusout`, () =>
+      document.addEventListener(`keydown`, onFormEscPress));
 
-  descriptionElement.addEventListener(`focusin`, () => {
-    document.removeEventListener(`keydown`, onFormEscPress);
-  });
+  descriptionElement.addEventListener(`focusin`, () =>
+      document.removeEventListener(`keydown`, onFormEscPress));
 
-  descriptionElement.addEventListener(`focusout`, () => {
-    document.addEventListener(`keydown`, onFormEscPress);
-  });
+  descriptionElement.addEventListener(`focusout`, () =>
+      document.addEventListener(`keydown`, onFormEscPress));
 
   const onError = (errorMessage) => {
     closeForm();

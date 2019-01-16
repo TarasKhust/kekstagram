@@ -11,9 +11,9 @@
     }
   };
 
-  const onModalEscPress = (evt) => {
-    window.util.isEscEvent(evt, window.error.closeModal(successModalTemplate));
-  };
+  const onModalEscPress = (evt) =>
+      window.util.isEscEvent(evt,
+          window.error.closeModal(successModalTemplate));
 
   const showModalSucces = () => {
     document.addEventListener(`keydown`, onModalEscPress);

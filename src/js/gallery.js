@@ -53,9 +53,7 @@
     callback();
   };
 
-  loadGalleryPhoto(() => {
-    imgFilters.classList.remove(`img-filters--inactive`);
-  });
+  loadGalleryPhoto(() => imgFilters.classList.remove(`img-filters--inactive`));
 
 })();
 

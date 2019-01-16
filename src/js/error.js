@@ -17,9 +17,7 @@
     document.removeEventListener(`click`, onDocumentClick);
   };
 
-  const onModalEscPress = (evt) => {
-    window.util.isEscEvent(evt, closeModal);
-  };
+  const onModalEscPress = (evt) => window.util.isEscEvent(evt, closeModal);
 
   const showModalError = (text) => {
     mainElement.appendChild(errorModalTemplate);

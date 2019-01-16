@@ -30,12 +30,8 @@
     return currentScale;
   };
 
-  scaleSmallerElement.addEventListener(`click`, () => {
-    setPhotoScale(-1);
-  });
+  scaleSmallerElement.addEventListener(`click`, () => setPhotoScale(-1));
 
-  scaleBiggerElement.addEventListener(`click`, () => {
-    setPhotoScale(1);
-  });
+  scaleBiggerElement.addEventListener(`click`, () => setPhotoScale(1));
 
 })();
