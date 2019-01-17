@@ -22,9 +22,8 @@
   const showModalError = (text) => {
     mainElement.appendChild(errorModalTemplate);
     errorModalTemplate.querySelector(`.error__title`).textContent = text;
-    errorModalTemplate.querySelector(`.error__button`).addEventListener(`click`, () => {
-      closeModal();
-    });
+    errorModalTemplate.querySelector(`.error__button`).
+        addEventListener(`click`, () => closeModal());
     errorModalTemplate.addEventListener(`click`, onDocumentClick);
     document.addEventListener(`keydown`, onModalEscPress);
   };
