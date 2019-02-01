@@ -19,7 +19,7 @@
       imgPreviewWrapperElement = uploadElement.querySelector(
           `.img-upload__preview`);
 
-  const setPhotoScale = (value) => {
+	const setPhotoScale = value => {
     let currentScale = parseInt(scaleValueElement.value, 10);
     currentScale += ScaleValue.STEP * value;
     if (currentScale >= ScaleValue.MIN && currentScale <= ScaleValue.MAX) {

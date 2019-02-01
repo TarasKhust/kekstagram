@@ -12,7 +12,7 @@
       hashtagElement = document.querySelector(`.text__hashtags`),
       uploadSubmitElement = uploadElement.querySelector(`.img-upload__submit`);
 
-  const checkRepeatHashtags = (hashtags) => {
+	const checkRepeatHashtags = hashtags => {
     for (let i = 0; i < hashtags.length; i++) {
       const currentHashtag = hashtags[i];
       for (let j = 0; j < hashtags.length; j++) {
@@ -34,7 +34,7 @@
       return;
     }
     const hashtags = hashtagValue.toLowerCase().split(` `);
-    hashtags.forEach((hashtagItem) => {
+		hashtags.forEach(hashtagItem => {
       if (hashtagItem.charAt(0) !== Hashtag.HASH_SYMBOL) {
         errorMessage = `Хэштег должен начинаться с символа #`;
       } else if (hashtagItem.indexOf(Hashtag.HASH_SYMBOL, 1) > 1) {

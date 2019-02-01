@@ -22,7 +22,7 @@
     document.removeEventListener(`keydown`, onFormEscPress);
   };
 
-  const onFormEscPress = (evt) => window.util.isEscEvent(evt, closeForm);
+	const onFormEscPress = evt => window.util.isEscEvent(evt, closeForm);
 
   uploadFormSelectElement.addEventListener(`change`, () => openForm());
 
@@ -40,7 +40,7 @@
   descriptionElement.addEventListener(`focusout`, () =>
       document.addEventListener(`keydown`, onFormEscPress));
 
-  const onError = (errorMessage) => {
+	const onError = errorMessage => {
     closeForm();
     window.error.show(errorMessage);
   };

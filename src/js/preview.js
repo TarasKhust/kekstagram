@@ -18,7 +18,7 @@
       content.
       querySelector(`.social__comment`);
 
-  const createComment = (comment) => {
+	const createComment = comment => {
     const commentElement = commentTemplate.cloneNode(true);
     const commentSrc = window.util.getRandomNumber(Avatar.MIN, Avatar.MAX);
     commentElement.querySelector(`.social__picture`).src = `img/avatar-${commentSrc}.svg`;
@@ -26,7 +26,7 @@
     return commentElement;
   };
 
-  const renderComments = (comments) => {
+	const renderComments = comments => {
     const commentsList = bigPicture.querySelector(`.social__comments`);
     const fragment = document.createDocumentFragment();
     comments.forEach((value, index) => {
@@ -39,7 +39,7 @@
     commentsList.appendChild(fragment);
   };
 
-  const renderBigPicture = (photo) => {
+	const renderBigPicture = photo => {
     bigPicture.querySelector(`.big-picture__img img`).src = photo.url;
     bigPicture.querySelector(`.likes-count`).textContent = photo.likes;
     bigPicture.querySelector(`.comments-count`).textContent = photo.comments.length;

@@ -63,7 +63,7 @@
       currentEffectName = effectsListElement.querySelector(`.effects__radio:checked`),
       effectLevelLineElement = effectLevelElement.querySelector(`.effect-level__line`);
 
-  const applyEffect = (value) => {
+	const applyEffect = value => {
     if (currentEffectName === DEFAULT_EFFECT) {
       imgPreviewElement.style.filter = ``;
     } else {
@@ -72,13 +72,13 @@
     setPinPosition(value);
   };
 
-  const setPinPosition = (value) => {
+	const setPinPosition = value => {
     effectPinElement.style.left = `${value}%`;
     effectLevelValueElement.value = Math.round(value);
     effectDepthElement.style.width = effectPinElement.style.left;
   };
 
-  const onImageEffectClick = (evt) => {
+	const onImageEffectClick = evt => {
     const target = evt.target;
     if (target.tagName !== `INPUT`) {
       return;
@@ -102,7 +102,7 @@
     return value * (EffectParameter[effect].MAX_VALUE - EffectParameter[effect].MIN_VALUE) / EffectValue.MAX + EffectParameter[effect].MIN_VALUE + EffectParameter[effect].UNIT;
   };
 
-  const onMouseDown = (evt) => {
+	const onMouseDown = evt => {
     let startCoordX = evt.clientX;
     const sliderEffectLineRect = effectLevelLineElement.getBoundingClientRect();
     const clickedPosition = (startCoordX - sliderEffectLineRect.left) /
@@ -111,7 +111,7 @@
     setPinPosition(clickedPosition);
     applyEffect(clickedPosition);
 
-    const onMouseMove = (moveEvt) => {
+		const onMouseMove = moveEvt => {
       const shiftX = startCoordX - moveEvt.clientX;
       startCoordX = moveEvt.clientX;
       let movePosition = (effectPinElement.offsetLeft - shiftX) / sliderEffectLineRect.width * 100;
@@ -126,7 +126,7 @@
       applyEffect(movePosition);
     };
 
-    const onMouseUp = (upEvt) => {
+		const onMouseUp = upEvt => {
       upEvt.preventDefault();
       document.removeEventListener(`mousemove`, onMouseMove);
       document.removeEventListener(`mousemove`, onMouseUp);

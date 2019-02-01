@@ -10,7 +10,7 @@
       picturesBlock = document.querySelector(`.pictures`),
       imgFilters = document.querySelector(`.img-filters`);
 
-  const renderPhoto = (value) => {
+	const renderPhoto = value => {
     const photoElement = pictureTemplate.cloneNode(true);
 
     photoElement.querySelector(`.picture__img`).src = value.url;
@@ -28,7 +28,7 @@
     const fragment = document.createDocumentFragment();
 
     photos = window.data.generatePhotos();
-    photos.forEach((value) => {
+		photos.forEach(value => {
       fragment.appendChild(renderPhoto(value));
     });
 
@@ -48,7 +48,7 @@
     appendPhotos();
   };
 
-  const loadGalleryPhoto = (callback) => {
+	const loadGalleryPhoto = callback => {
     window.backend.load(successLoadHandler);
     callback();
   };

@@ -15,7 +15,7 @@
     document.addEventListener(`keydown`, onPhotoEscPress);
   };
 
-  const onPhotoEscPress = (evt) => window.util.isEscEvent(evt, closePhoto);
+	const onPhotoEscPress = evt => window.util.isEscEvent(evt, closePhoto);
 
   // window.gallery.appendPhotos();
 

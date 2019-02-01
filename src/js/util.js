@@ -5,7 +5,7 @@
     getRandomNumber: (min, max) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
-    getRandomElement: (element) => {
+		getRandomElement: element => {
       return element[Math.floor(Math.random() * element.length)];
     },
     KeyCode: {

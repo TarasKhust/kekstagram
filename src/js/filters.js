@@ -25,15 +25,14 @@
   const setNewActiveFilter = (filterElement) => {
     const activeFilterElement = filtersElement.querySelector(
         `.img-filters__button--active`);
-    if (activeFilterElement) {
-      activeFilterElement.classList.remove(`img-filters__button--active`);
-    }
-    filterElement.classList.add(`img-filters__button--active`);
+		activeFilterElement ? activeFilterElement.classList.remove(
+				`img-filters__button--active`) :
+				filterElement.classList.add(`img-filters__button--active`);
   };
 
   const removeFormerPictures = () => {
     const formerPictures = document.querySelectorAll(`.picture`);
-    formerPictures.forEach(function (node) {
+		formerPictures.forEach((node) => {
       node.remove();
     });
   };
@@ -42,7 +41,7 @@
     if (timerID) {
       clearTimeout(timerID);
     }
-    timerID = setTimeout(function () {
+		timerID = setTimeout(function() {
       removeFormerPictures();
       window.gallery.renderPhoto(newDataArray);
     }, DEBOUNCE_INTERVAL);
@@ -62,7 +61,8 @@
     }
     timerID = setTimeout(() => {
       removeFormerPictures();
-      window.filters.currentData = shuffleArray(dataCopy).splice(0, NEW_PICTURES_AMOUNT);
+			window.filters.currentData = shuffleArray(dataCopy).
+					splice(0, NEW_PICTURES_AMOUNT);
       window.gallery.appendPhotos(window.filters.currentData);
     }, DEBOUNCE_INTERVAL);
   };
@@ -70,18 +70,20 @@
   const filterDiscussedElementClickHandler = () => {
     setNewActiveFilter(filterDiscussedElement);
     const dataCopy = window.gallery.initialData.slice();
-    window.filters.currentData = dataCopy.sort(function (picture1, picture2) {
+		window.filters.currentData = dataCopy.sort(function(picture1, picture2) {
       return (picture2.comments.length - picture1.comments.length);
     });
     updatePictures(window.filters.currentData);
   };
 
-  filterPopularElement.addEventListener(`click`, filterPopularElementClickHandler);
+	filterPopularElement.addEventListener(`click`,
+			filterPopularElementClickHandler);
   filterNewElement.addEventListener(`click`, filterNewElementClickHandler);
-  filterDiscussedElement.addEventListener(`click`, filterDiscussedElementClickHandler);
+	filterDiscussedElement.addEventListener(`click`,
+			filterDiscussedElementClickHandler);
 
   window.filters = {
     filtersElement: filtersElement,
-    currentData: []
+		currentData: [],
   };
 })();

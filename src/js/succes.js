@@ -5,13 +5,13 @@
   const mainElement = document.querySelector(`main`),
       successModalTemplate = document.querySelector(`#success`).content.querySelector(`.success`);
 
-  const onDocumentClick = (evt) => {
+	const onDocumentClick = evt => {
     if (evt.target.tagName === `SECTION`) {
       window.error.closeModal();
     }
   };
 
-  const onModalEscPress = (evt) =>
+	const onModalEscPress = evt =>
       window.util.isEscEvent(evt,
           window.error.closeModal(successModalTemplate));
 
