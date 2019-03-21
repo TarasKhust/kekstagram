@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "alias-quokka-plugin"
+  ],
+  "alias": {
+    "@/": "./src/",
+    "utils": "./src/utils",
+    "log": "./src/utils/log"
+  },
+  "jsdom": {
+    "file": "src/index.html",
+    "html": "...",
+    "userAgent": "..."
+  }
+}

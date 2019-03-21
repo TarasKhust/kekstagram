@@ -1421,3 +1421,7 @@ main {
 		grid-row: 1 / span 3;
 	}
 }
+
+.img-filters__form {
+	display: none;
+}
